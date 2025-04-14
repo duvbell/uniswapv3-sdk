@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "IWETH9",
-  "sourceName": "contracts/interfaces/external/IWETH9.sol",
+  "contractName": "IWIP9",
+  "sourceName": "contracts/interfaces/external/IWIP9.sol",
   "abi": [
     {
       "anonymous": false,

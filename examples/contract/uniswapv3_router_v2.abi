@@ -18,7 +18,7 @@
             },
             {
                 "internalType": "address",
-                "name": "_WETH9",
+                "name": "_WIP9",
                 "type": "address"
             }
         ],
@@ -27,7 +27,7 @@
     },
     {
         "inputs": [],
-        "name": "WETH9",
+        "name": "WIP9",
         "outputs": [
             {
                 "internalType": "address",
@@ -974,7 +974,7 @@
                 "type": "address"
             }
         ],
-        "name": "unwrapWETH9",
+        "name": "unwrapWIP9",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -987,7 +987,7 @@
                 "type": "uint256"
             }
         ],
-        "name": "unwrapWETH9",
+        "name": "unwrapWIP9",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -1015,7 +1015,7 @@
                 "type": "address"
             }
         ],
-        "name": "unwrapWETH9WithFee",
+        "name": "unwrapWIP9WithFee",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"
@@ -1038,7 +1038,7 @@
                 "type": "address"
             }
         ],
-        "name": "unwrapWETH9WithFee",
+        "name": "unwrapWIP9WithFee",
         "outputs": [],
         "stateMutability": "payable",
         "type": "function"

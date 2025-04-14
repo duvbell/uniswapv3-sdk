@@ -7,7 +7,7 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_WETH9",
+          "name": "_WIP9",
           "type": "address"
         }
       ],
@@ -16,7 +16,7 @@
     },
     {
       "inputs": [],
-      "name": "WETH9",
+      "name": "WIP9",
       "outputs": [
         {
           "internalType": "address",

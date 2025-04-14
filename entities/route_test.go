@@ -16,7 +16,7 @@ var (
 	rtoken0 = entities.NewToken(1, common.HexToAddress("0x0000000000000000000000000000000000000001"), 18, "t0", "token0")
 	rtoken1 = entities.NewToken(1, common.HexToAddress("0x0000000000000000000000000000000000000002"), 18, "t1", "token1")
 	rtoken2 = entities.NewToken(1, common.HexToAddress("0x0000000000000000000000000000000000000003"), 18, "t2", "token2")
-	rweth   = entities.WETH9[1]
+	rweth   = entities.NewToken(1, common.HexToAddress("0x0000000000000000000000000000000000000004"), 18, "weth", "wrapped ether")
 
 	rpool_0_1, _    = NewPool(rtoken0, rtoken1, constants.FeeMedium, utils.EncodeSqrtRatioX96(constants.One, constants.One), big.NewInt(0), 0, nil)
 	rpool_0_weth, _ = NewPool(rtoken0, rweth, constants.FeeMedium, utils.EncodeSqrtRatioX96(constants.One, constants.One), big.NewInt(0), 0, nil)

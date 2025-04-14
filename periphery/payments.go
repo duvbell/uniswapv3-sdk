@@ -21,13 +21,13 @@ func encodeFeeBips(fee *entities.Percent) *big.Int {
 	return fee.Multiply(entities.NewPercent(big.NewInt(10000), big.NewInt(1))).Quotient()
 }
 
-func EncodeUnwrapWETH9(amountMinimum *big.Int, recipient common.Address, feeOptions *FeeOptions) ([]byte, error) {
+func EncodeUnwrapWIP9(amountMinimum *big.Int, recipient common.Address, feeOptions *FeeOptions) ([]byte, error) {
 	abi := GetABI(paymentsABI)
 	if feeOptions != nil {
-		return abi.Pack("unwrapWETH9WithFee", amountMinimum, &recipient, encodeFeeBips(feeOptions.Fee), feeOptions.Recipient)
+		return abi.Pack("unwrapWIP9WithFee", amountMinimum, &recipient, encodeFeeBips(feeOptions.Fee), feeOptions.Recipient)
 	}
 
-	return abi.Pack("unwrapWETH9", amountMinimum, recipient)
+	return abi.Pack("unwrapWIP9", amountMinimum, recipient)
 }
 
 func EncodeSweepToken(token *entities.Token, amountMinimum *big.Int, recipient common.Address, feeOptions *FeeOptions) ([]byte, error) {

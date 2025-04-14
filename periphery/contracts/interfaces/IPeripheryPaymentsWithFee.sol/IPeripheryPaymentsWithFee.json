@@ -79,7 +79,7 @@
           "type": "address"
         }
       ],
-      "name": "unwrapWETH9",
+      "name": "unwrapWIP9",
       "outputs": [],
       "stateMutability": "payable",
       "type": "function"
@@ -107,7 +107,7 @@
           "type": "address"
         }
       ],
-      "name": "unwrapWETH9WithFee",
+      "name": "unwrapWIP9WithFee",
       "outputs": [],
       "stateMutability": "payable",
       "type": "function"
