@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"math/big"
 	"os"
 	"time"
@@ -12,6 +13,7 @@ import (
 	"github.com/daoleno/uniswapv3-sdk/entities"
 	"github.com/daoleno/uniswapv3-sdk/examples/helper"
 	"github.com/daoleno/uniswapv3-sdk/periphery"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
@@ -25,12 +27,18 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	wallet := helper.InitWallet(os.Getenv("MY_PRIVATE_KEY"))
+	wallet := helper.InitWallet(os.Getenv("PRIVATE_KEY_MAIN"))
 	if wallet == nil {
 		log.Fatal("init wallet failed")
 	}
 
-	pool, err := helper.ConstructV3Pool(client, helper.WMATIC, helper.AMP, uint64(constants.FeeMedium))
+	// log out the wallet adderss
+	log.Printf("wallet address: %s", wallet.PublicKey.String())
+
+	// get the token address
+	wip := coreEntities.NewToken(1, common.HexToAddress("0x1514000000000000000000000000000000000000"), 18, "weth", "wrapped ip")
+	usdc := coreEntities.NewToken(1, common.HexToAddress("0xF1815bd50389c46847f0Bda824eC8da914045D14"), 6, "usdc", "usdc")
+	pool, err := helper.ConstructV3Pool(client, wip, usdc, uint64(constants.FeeMedium))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,13 +51,13 @@ func main() {
 
 	// single trade input
 	// single-hop exact input
-	r, err := entities.NewRoute([]*entities.Pool{pool}, helper.WMATIC, helper.AMP)
+	r, err := entities.NewRoute([]*entities.Pool{pool}, wip, usdc)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	swapValue := helper.FloatStringToBigInt("0.1", 18)
-	trade, err := entities.FromRoute(r, coreEntities.FromRawAmount(helper.WMATIC, swapValue), coreEntities.ExactInput)
+	trade, err := entities.FromRoute(r, coreEntities.FromRawAmount(wip, swapValue), coreEntities.ExactInput)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,4 +78,19 @@ func main() {
 		log.Fatal(err)
 	}
 	log.Println(tx.Hash().String())
+
+	// broadcast the tx
+	tx, err = helper.SendTX(client, common.HexToAddress(helper.ContractV3SwapRouterV1),
+		swapValue, params.Calldata, wallet)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("tx hash: %+v", tx)
+
+	// wait for the tx to be mined
+	receipt, err := bind.WaitMined(context.Background(), client, tx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Printf("tx receipt: %+v", receipt)
 }

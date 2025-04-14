@@ -2,6 +2,7 @@ package helper
 
 import (
 	"crypto/ecdsa"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -20,6 +21,9 @@ func InitWallet(privateHexKeys string) *Wallet {
 	if privateHexKeys == "" {
 		return nil
 	}
+
+	// remove 0x prefix
+	privateHexKeys = strings.TrimPrefix(privateHexKeys, "0x")
 	privateKey, err := crypto.HexToECDSA(privateHexKeys)
 	if err != nil {
 		return nil

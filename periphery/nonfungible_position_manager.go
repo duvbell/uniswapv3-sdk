@@ -43,7 +43,7 @@ type IncreaseSpecificOptions struct {
 	TokenID *big.Int // Indicates the ID of the position to increase liquidity for
 }
 
-//  Options for producing the calldata to add liquidity
+// Options for producing the calldata to add liquidity
 type CommonAddLiquidityOptions struct {
 	SlippageTolerance *core.Percent  // How much the pool price is allowed to move
 	Deadline          *big.Int       // When the transaction expires, in epoch seconds
@@ -308,7 +308,7 @@ func encodeCollect(opts *CollectOptions) ([][]byte, error) {
 			tokenAmount = opts.ExpectedCurrencyOwed0.Quotient()
 		}
 
-		weth9data, err := EncodeUnwrapWETH9(ethAmount, opts.Recipient, nil)
+		weth9data, err := EncodeUnwrapWIP9(ethAmount, opts.Recipient, nil)
 		if err != nil {
 			return nil, err
 		}

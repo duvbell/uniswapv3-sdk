@@ -242,7 +242,7 @@ func SwapCallParameters(trades []*entities.Trade, options *SwapOptions) (*utils.
 	if routerMustCustody {
 		if options.Fee != nil {
 			if outputIsNative {
-				calldata, err := EncodeUnwrapWETH9(totalAmountOut.Quotient(), options.Recipient, options.Fee)
+				calldata, err := EncodeUnwrapWIP9(totalAmountOut.Quotient(), options.Recipient, options.Fee)
 				if err != nil {
 					return nil, err
 				}
@@ -255,7 +255,7 @@ func SwapCallParameters(trades []*entities.Trade, options *SwapOptions) (*utils.
 				calldatas = append(calldatas, calldata)
 			}
 		} else {
-			calldata, err := EncodeUnwrapWETH9(totalAmountOut.Quotient(), options.Recipient, nil)
+			calldata, err := EncodeUnwrapWIP9(totalAmountOut.Quotient(), options.Recipient, nil)
 			if err != nil {
 				return nil, err
 			}

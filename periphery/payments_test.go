@@ -20,14 +20,14 @@ var (
 	token = entities.NewToken(1, common.HexToAddress("0x0000000000000000000000000000000000000001"), 18, "t0", "token0")
 )
 
-func TestEncodeUnwrapWETH9(t *testing.T) {
+func TestEncodeUnwrapWIP9(t *testing.T) {
 	// works without feeOptions
-	calldata, err := EncodeUnwrapWETH9(amount, recipient, nil)
+	calldata, err := EncodeUnwrapWIP9(amount, recipient, nil)
 	assert.NoError(t, err)
 	assert.Equal(t, "0x49404b7c000000000000000000000000000000000000000000000000000000000000007b0000000000000000000000000000000000000000000000000000000000000003", hexutil.Encode(calldata))
 
 	// works with feeOptions
-	calldata, err = EncodeUnwrapWETH9(amount, recipient, feeOptions)
+	calldata, err = EncodeUnwrapWIP9(amount, recipient, feeOptions)
 	assert.NoError(t, err)
 	assert.Equal(t, "0x9b2c0a37000000000000000000000000000000000000000000000000000000000000007b0000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000009", hexutil.Encode(calldata))
 }

@@ -2,6 +2,7 @@ package helper
 
 import (
 	"errors"
+	"fmt"
 	"math/big"
 
 	"github.com/daoleno/uniswapv3-sdk/examples/contract"
@@ -35,6 +36,8 @@ func ConstructV3Pool(client *ethclient.Client, token0, token1 *coreEntities.Toke
 	if err != nil {
 		return nil, err
 	}
+
+	fmt.Println("poolAddress", poolAddress.String())
 
 	contractPool, err := contract.NewUniswapv3Pool(poolAddress, client)
 	if err != nil {
